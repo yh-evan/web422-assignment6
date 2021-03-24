@@ -13,14 +13,14 @@
           <mat-card-title>{{item.name}}</mat-card-title>
           <mat-card-subtitle>New Release</mat-card-subtitle>
         </mat-card-header>
-        <a [routerLink]="['/album']"><img mat-card-image class="album-cover" src={{item.images[0].url}}
+        <a [routerLink]="['/album/'+item.id]"><img mat-card-image class="album-cover" src={{item.images[0].url}}
             alt="album art"></a>
         <strong>Release Date: </strong>{{item.release_date}}<br />
         <strong>Tracks: </strong>{{item.total_tracks}}<br /><br />
-        <mat-card-content>
+        <mat-card-content *ngFor="let artist of item.artists">
           <mat-chip-list aria-label="Artist selection">
-            <a [routerLink]="['/artist']">
-              <mat-chip *ngFor="let artist of item.artists">{{artist.name}}</mat-chip>
+            <a [routerLink]="['/artist/'+artist.id]">
+              <mat-chip>{{artist.name}}</mat-chip>
             </a>
           </mat-chip-list>
         </mat-card-content>

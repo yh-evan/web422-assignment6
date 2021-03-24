@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import * as albumData from '../data/SearchResultsAlbums.json';
-import * as artistData from '../data/SearchResultsArtist.json';
+import { ActivatedRoute } from '@angular/router';
+import { MusicDataService } from '../music-data.service';
 
 @Component({
   selector: 'app-artist-discography',
@@ -8,10 +8,29 @@ import * as artistData from '../data/SearchResultsArtist.json';
   styleUrls: ['./artist-discography.component.css'],
 })
 export class ArtistDiscographyComponent implements OnInit {
-  albums = albumData.albums.items;
-  artist = (artistData as any).default;
+  albums!: any[];
+  artist: any;
 
-  constructor() {}
+  constructor(
+    private route: ActivatedRoute,
+    private dataService: MusicDataService
+  ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let id = this.route.snapshot.params['id'];
+    this.dataService.getArtistById(id).subscribe((data) => {
+      this.artist = data;
+    });
+    this.dataService.getAlbumsByArtistId(id).subscribe((data) => {
+      const seen = new Set();
+      let unique = data.items;
+      this.albums = unique.filter((album: { name: unknown }) => {
+        const duplicate = seen.has(album.name);
+        seen.add(album.name);
+        return !duplicate;
+      });
+
+      console.log(this.albums);
+    });
+  }
 }
