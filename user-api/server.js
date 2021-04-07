@@ -83,7 +83,7 @@ app.get(
 );
 
 app.put(
-  "/api.user/favourites/:id",
+  "/api/user/favourites/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     userService
@@ -98,11 +98,11 @@ app.put(
 );
 
 app.delete(
-  "/api.user/favourites/:id",
+  "/api/user/favourites/:id",
   passport.authenticate("jwt", { session: false }),
   (req, res) => {
     userService
-      .addFavourite(req.user._id, req.params.id)
+      .removeFavourite(req.user._id, req.params.id)
       .then((list) => {
         res.json(list);
       })

@@ -23,10 +23,17 @@ export class AlbumComponent implements OnInit {
   }
 
   addToFavourites(trackID: any) {
-    if (this.dataService.addToFavourites(trackID)) {
-      this.snackBar.open('Adding to Favourites...', 'Done', {
-        duration: 15000,
-      });
-    }
+    this.dataService.addToFavourites(trackID).subscribe(
+      (success) => {
+        this.snackBar.open('Adding to Favourites...', 'Done', {
+          duration: 15000,
+        });
+      },
+      (err) => {
+        this.snackBar.open(err.message, 'Done', {
+          duration: 15000,
+        });
+      }
+    );
   }
 }
