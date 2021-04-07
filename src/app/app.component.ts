@@ -1,10 +1,10 @@
 /*********************************************************************************
- *  WEB422 – Assignment 05
+ *  WEB422 – Assignment 06
  *  I declare that this assignment is my own work in accordance with Seneca  Academic Policy.  No part of this
  *  assignment has been copied manually or electronically from any other source (including web sites) or
  *  distributed to other students.
  *
- *  Name: Yuhuan Zhou Student ID: 149528192 Date: Mar/24/2021
+ *  Name: Yuhuan Zhou Student ID: 149528192 Date: Apr/7/2021
  *
  ********************************************************************************/
 
